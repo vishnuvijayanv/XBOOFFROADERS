@@ -1,6 +1,8 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Loader from './components/Loader';
-import Header from './components/Header.jsx';
+import Header from './components/Header';
+import Register from './components/Register';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -13,10 +15,13 @@ function App() {
   return loading ? (
     <Loader />
   ) : (
-    <div className="App">
-            <Header />
-      <h1>Welcome to BO Offroaders</h1>
-    </div>
+    <Router>
+      <div style={{  backgroundColor: '#000', minHeight: '100vh' }}>
+        <Routes>
+          <Route path="/" element={<Register />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

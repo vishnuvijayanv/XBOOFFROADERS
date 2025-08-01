@@ -8,13 +8,7 @@ const Loader = () => {
 
   useEffect(() => {
     setFadeIn(true);
-    // let i = 0;
-    // const interval = setInterval(() => {
-    //   setText(fullText.slice(0, i + 1));
-    //   i++;
-    //   if (i === fullText.length) clearInterval(interval);
-    // }, 45);
-    // return () => clearInterval(interval);
+    
   }, []);
 
   return (
@@ -40,7 +34,7 @@ const Loader = () => {
           transform: fadeIn ? 'scale(1)' : 'scale(0.95)',
           transition: 'opacity 1.2s ease, transform 1.5s ease',
           borderRadius: '10px',
-          boxShadow: '0 0 12px rgba(255, 0, 0, 0.3)', // Soft red glow
+          boxShadow: '0 0 12px rgba(252, 59, 59, 0.3)', // Soft red glow
         }}
       />
       <p style={{
