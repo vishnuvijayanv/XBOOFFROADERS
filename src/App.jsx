@@ -19,7 +19,7 @@ import Gallery from "./components/Gallery";
 import PreviousRides from "./components/PreviousRides";
 import { getSiteSettingsAPI } from "./services/allApi";
 import "sweetalert2/dist/sweetalert2.min.css";
-import { getFCMToken, onMessageListener } from "./firebase";
+import { getFCMToken, onMessageListener } from "./services/firebase";
 import { registerFcmTokenAPI, removeFcmTokenAPI } from "./services/allApi";
 import { toast } from "react-toastify"; // ✅ add this
 

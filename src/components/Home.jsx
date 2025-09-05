@@ -86,6 +86,38 @@ function Home(props) {
       id="home"
       className={darkMode ? "bg-dark text-white" : "bg-light text-dark"}
     >
+
+      {isMobile && (
+        <div className="position-absolute m-3" style={{ zIndex: 1000 }}>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              borderRadius: "50px",
+              padding: "5px",
+              cursor: "pointer",
+              transition: "background 0.3s",
+            }}
+            onClick={() => setDarkMode(!darkMode)}
+          >
+            <div
+              style={{
+                background: darkMode ? "#333" : "#fff",
+                borderRadius: "50%",
+                width: "30px",
+                height: "30px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: darkMode ? "#fff" : "#333",
+                boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+              }}
+            >
+              {darkMode ? <FaMoon /> : <FaSun />}
+            </div>
+          </div>
+        </div>
+      )}
       {/* Inline animation styles */}
       <style>{`
         @keyframes fadeInUp {
