@@ -49,7 +49,7 @@ const Register = () => {
       if (!formData.place) newErrors.place = "Place is required";
       if (
         !formData.vehicleNumber ||
-        !/^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$/i.test(formData.vehicleNumber)
+        !/^[A-Z]{2}[0-9]{2}[A-Z]{1,2}[0-9]{1,4}$/i.test(formData.vehicleNumber)
       ) {
         newErrors.vehicleNumber =
           "Enter valid vehicle number (e.g. KA01AB1234)";
@@ -94,8 +94,8 @@ const Register = () => {
               password: "",
               agreed: false,
               UTYPE: "NRML",
-              License:"",
-              Profile:""
+              License: "",
+              Profile: "",
             });
             setIsRegister(false);
           } else {
@@ -107,11 +107,11 @@ const Register = () => {
             password: formData.password,
           };
           const result = await loginAPI(data);
-          console.log(result.response?.data)
+          console.log(result.response?.data);
           if (result.status >= 200 && result.status < 300) {
             toast.success(`Welcome ${result.data.name || "User"}!`);
             console.log(result.data.token);
-            
+
             // store token or navigate
             localStorage.setItem("user", JSON.stringify(result.data));
             localStorage.setItem("TOKEN", JSON.stringify(result.data.token));

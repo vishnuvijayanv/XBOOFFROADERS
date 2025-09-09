@@ -21,6 +21,7 @@ export default function RideBooking(props) {
   });
   const [rides, setRides] = useState([]);
   const [storedUser, setStoredUser] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   // Get user details
   useEffect(() => {
@@ -71,12 +72,13 @@ export default function RideBooking(props) {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  // Booking
   const handleBook = async (rideId) => {
     if (!file) {
       toast.error("Please upload payment screenshot");
       return;
     }
+
+    setLoading(true); // ✅ Start spinner
 
     try {
       const bookingData = new FormData();
@@ -106,6 +108,8 @@ export default function RideBooking(props) {
       }
     } catch (err) {
       toast.error("Something went wrong. Try again.");
+    } finally {
+      setLoading(false); // ✅ Stop spinner
     }
   };
 
@@ -159,6 +163,21 @@ export default function RideBooking(props) {
         .upload-btn { padding: 10px 15px; border: 1px solid #e50914; border-radius: 8px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px; color: #e50914; }
         .book-btn { margin-top: 20px; width: 100%; padding: 12px; border: none; border-radius: 10px; background: #e50914; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s ease; }
         .book-btn:hover { background: #b71c1c; }
+
+        .spinner {
+  border: 4px solid #f3f3f3; /* Light grey */
+  border-top: 4px solid #e50914; /* Red */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
       `}</style>
 
       {rides && rides.length > 0 ? (
@@ -271,8 +290,12 @@ export default function RideBooking(props) {
                   </label>
                 </div>
               </div>
-              <button className="book-btn" onClick={() => handleBook(ride._id)}>
-                Book Now
+              <button
+                className="book-btn"
+                onClick={() => handleBook(ride._id)}
+                disabled={loading} // disable during loading
+              >
+                {loading ? <div className="spinner"></div> : "Book Now"}
               </button>
             </div>
           </motion.div>
