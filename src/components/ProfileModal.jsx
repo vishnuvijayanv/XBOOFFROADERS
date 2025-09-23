@@ -108,7 +108,7 @@ const ProfileModal = ({ isOpen, onClose }) => {
   const handleLogout = () => {
     localStorage.clear();
     sessionStorage.clear();
-    window.location.href = "/register";
+    navigate("/register");
   };
 
   const validateFields = () => {
@@ -261,17 +261,17 @@ const ProfileModal = ({ isOpen, onClose }) => {
     }
   };
 
-const tabs = [
-  { id: "edit", label: "Edit Profile", icon: Edit },
-  ...(uType === "ADMIN"
-    ? [
-        { id: "users", label: "Users", icon: Users },
-        { id: "manage", label: "Manage Site", icon: ToggleLeft },
-        { id: "upload", label: "Upload New", icon: CalendarClock },
-      ]
-    : []),
-  { id: "rides", label: "Previous Rides", icon: History },
-];
+  const tabs = [
+    { id: "edit", label: "Edit Profile", icon: Edit },
+    ...(uType === "ADMIN"
+      ? [
+          { id: "users", label: "Users", icon: Users },
+          { id: "manage", label: "Manage Site", icon: ToggleLeft },
+          { id: "upload", label: "Upload New", icon: CalendarClock },
+        ]
+      : []),
+    { id: "rides", label: "Previous Rides", icon: History },
+  ];
 
   return (
     <div
@@ -753,7 +753,7 @@ const tabs = [
         {activeTab === "upload" && uType === "ADMIN" && (
           <AddRide tabId={activeTab} />
         )}
-        {activeTab === "rides"  && <RideHistory />}
+        {activeTab === "rides" && <RideHistory />}
       </div>
 
       {/* 🔹 Fullscreen Image Modal */}
