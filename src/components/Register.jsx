@@ -52,7 +52,7 @@ const Register = () => {
         !/^[A-Z]{2}[0-9]{2}[A-Z]{1,2}[0-9]{1,4}$/i.test(formData.vehicleNumber)
       ) {
         newErrors.vehicleNumber =
-          "Enter valid vehicle number (e.g. KA01AB1234)";
+          "Enter valid vehicle number (e.g. KL01AB1234)";
       }
       if (!formData.address || formData.address.length < 5)
         newErrors.address = "Address is required";
